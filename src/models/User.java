@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class User {
@@ -90,6 +91,24 @@ public class User {
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
+	}
+	 @Override
+	 public boolean equals(final Object obj)
+	 {
+	 if (obj instanceof User)
+	 {
+	 final User other = (User) obj;
+	 return Objects.equals(firstName, other.firstName)
+	 && Objects.equals(lastName, other.lastName)
+	 && Objects.equals(gender, other.gender)
+	 && Objects.equals(age, other.age)
+	 && Objects.equals(occupation, other.occupation)
+	 && Objects.equals(ratings, other.ratings);
+	 }
+	 else
+	 {
+	 return false;
+	 }
 	}
 }
 	

@@ -9,10 +9,26 @@ public  class Movie implements Comparable<Movie> {
      private String title;
      private String year;
      private String url;
+
+ 	public Movie(String title, String year, String url) 
+ 	{
+ 		counter++;
+ 		this.id = counter;
+ 		this.title = title;
+ 		this.year = year;
+ 		this.url = url;
+ 	}
+ 	public Movie(Long id,String title, String year, String url) 
+ 	{
+ 		this.id=id;
+ 		this.title = title;
+ 		this.year = year;
+ 		this.url = url;
+ 	}
      
-     private List<Rating> ratings = new ArrayList<Rating>();
+    private List<Rating> ratings = new ArrayList<Rating>();
     
-     public String getTitle() {
+    public String getTitle() {
  		return title;
  	}
 
@@ -50,20 +66,6 @@ public  class Movie implements Comparable<Movie> {
 		return "MOVIEID: "+ id +", TITLE: " + title + ", YEAR: " + year + ", URL: " + url;
 	}
 
-
-	public Movie(String title, String year, String url) {
-		counter++;
-		this.id = counter;
-		this.title = title;
-		this.year = year;
-		this.url = url;
-	}
-	public Movie(Long id,String title, String year, String url) {
-		this.id=id;
-		this.title = title;
-		this.year = year;
-		this.url = url;
-	}
 	
 	public Long getId() {
 		return id;
