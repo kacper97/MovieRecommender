@@ -14,7 +14,7 @@ public interface RecommenderInterface {
 	//Adds a movie to the database
 	public void addMovie(String title, String year, String url);
 	//Adds a rating from a user on a movie
-	public void addRating(Long userID, Long movieID, int rating);
+	public void addRating(Long userID, Long movieID, int movieRating);
 	//Gets a movie using its ID
 	public Movie getMovie(Long movieID);
 	//Gets a list of all the users ratings

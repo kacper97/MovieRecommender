@@ -42,8 +42,9 @@ public class RecommenderAPI implements RecommenderInterface {
 	}
 
 	@Override
-	public void addRating(Long userID, Long movieID, int rating) {
-		// TODO Auto-generated method stub
+	public void addRating(Long userID, Long movieID, int movieRating) {
+		Rating newmovieRating= new Rating(userID, movieID, movieRating);
+		ratingIndex.add(newmovieRating);
 	}
 
 	@Override
