@@ -1,5 +1,8 @@
 package utils;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,13 +10,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Stack;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-
 public class XMLSerializer implements Serializer
 {
 
-  private Stack<Object> stack = new Stack<Object>();
+  private Stack stack = new Stack();
   private File file;
 
   public XMLSerializer(File file)
@@ -25,7 +25,7 @@ public class XMLSerializer implements Serializer
   {
     stack.push(o);
   }
-
+ 
   public Object pop()
   {
     return stack.pop(); 
@@ -40,7 +40,7 @@ public class XMLSerializer implements Serializer
     {
       XStream xstream = new XStream(new DomDriver());
       is = xstream.createObjectInputStream(new FileReader(file));
-      stack = (Stack<Object>) is.readObject();
+      stack = (Stack) is.readObject();
     }
     finally
     {
@@ -69,4 +69,5 @@ public class XMLSerializer implements Serializer
       }
     }
   }
+
 }

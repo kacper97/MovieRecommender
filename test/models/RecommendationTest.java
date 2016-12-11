@@ -1,4 +1,4 @@
-wpackage models;
+package models;
 
 public class RecommendationTest {
 

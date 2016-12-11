@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public class User {
 
 	public static Long counter = 0l;
@@ -92,6 +91,7 @@ public class User {
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
+	
 	 @Override
 	 public boolean equals(final Object obj)
 	 {
