@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import models.Movie;
 import models.Rating;
@@ -22,7 +23,7 @@ public interface RecommenderInterface {
 	//Gets a list of all the users Recommendations
 	public ArrayList<Recommendation> getUserRecommendations(Long userID);
 	//Gets a list of the top 10 movies.
-	public ArrayList<Movie> getTopTenMovies();
+	public List<Movie> getTopTenMovies();
 	//Loads the data
 	public void load();
 	//Saves the current data

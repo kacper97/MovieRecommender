@@ -20,9 +20,9 @@ public class Main
  }
 
  @Command(description="Delete a User")
- public void removeUser (@Param(name="id") Long id)
+ public void removeUser (@Param(name="id") Long userID)
  {
-	 RecommenderAPI.removeUser(id);
+	 RecommenderAPI.removeUser(userID);
  }
  
  @Command(description="Add a Movie")
