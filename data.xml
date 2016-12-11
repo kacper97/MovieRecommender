@@ -1,0 +1,47 @@
+<object-stream>
+  <java.util.Stack serialization="custom">
+    <unserializable-parents/>
+    <vector>
+      <default>
+        <capacityIncrement>0</capacityIncrement>
+        <elementCount>4</elementCount>
+        <elementData>
+          <long>1</long>
+          <long>1</long>
+          <map>
+            <entry>
+              <long>0</long>
+              <models.User>
+                <id>0</id>
+                <firstName>homer</firstName>
+                <lastName>simpson</lastName>
+                <age>45</age>
+                <gender>male</gender>
+                <occupation>hi</occupation>
+                <ratings/>
+              </models.User>
+            </entry>
+          </map>
+          <map>
+            <entry>
+              <long>1</long>
+              <models.Movie>
+                <id>1</id>
+                <title>thesimpsons</title>
+                <year>2005</year>
+                <url>www.thesimpsons.com</url>
+                <ratings/>
+              </models.Movie>
+            </entry>
+          </map>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+          <null/>
+        </elementData>
+      </default>
+    </vector>
+  </java.util.Stack>
+</object-stream>
