@@ -13,7 +13,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class XMLSerializer implements Serializer
 {
 
-  private Stack stack = new Stack();
+  private Stack<Object> stack = new Stack<Object>();
   private File file;
 
   public XMLSerializer(File file)
@@ -40,7 +40,7 @@ public class XMLSerializer implements Serializer
     {
       XStream xstream = new XStream(new DomDriver());
       is = xstream.createObjectInputStream(new FileReader(file));
-      stack = (Stack) is.readObject();
+      stack = (Stack<Object>) is.readObject();
     }
     finally
     {

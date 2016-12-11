@@ -82,5 +82,9 @@ public class RecommenderAPI implements RecommenderInterface {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	public void store(){
+		//for Main method in Main
+	}
+	
 }
