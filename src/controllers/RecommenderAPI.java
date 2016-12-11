@@ -15,6 +15,7 @@ import utils.Serializer;
 
 public class RecommenderAPI implements RecommenderInterface 
 {
+	//hashmaps and arraylists for INDEXES.
 	private Map<Long, User> userIndex = new HashMap<>();
 	private Map<Long, Movie> movieIndex = new HashMap<>();
 	private ArrayList<Rating> ratingIndex = new ArrayList<>();
@@ -33,7 +34,7 @@ public class RecommenderAPI implements RecommenderInterface
 	
 	public void addUser(String firstName, String lastName, int age, String gender, String occupation) 
 	{
-		 User user = new User (firstName, lastName, gender, age, occupation);
+		 User user = new User (firstName, lastName, gender, age, occupation); // //the id for map key is already obtained
 		 userIndex.put(user.getId(), user);
 	}
 
@@ -43,7 +44,7 @@ public class RecommenderAPI implements RecommenderInterface
 		if(userIndex.containsKey(userID))
 		{
 			userIndex.remove(userID);
-			User.counter--;
+			User.counter--; //removing users by ID if the userIndex hashmap contains the key of USER ID
 		}
 			else
 			{
@@ -54,32 +55,32 @@ public class RecommenderAPI implements RecommenderInterface
 	@Override
 	public void addMovie(Movie movie) 
 	{
-		movieIndex.put(movie.getId(), movie); 
+		movieIndex.put(movie.getId(), movie); // getting ID for movie
 	}
 	
 	@Override
 	public void addMovie(String title, String year, String url) 
 	{
-		Movie movie = new Movie(title, year, url);
+		Movie movie = new Movie(title, year, url); // the id for map key obtained.
 		movieIndex.put(movie.getId(), movie);
 	}
 	
 	@Override
 	public Movie getMovie(Long movieID) 
 	{
-		return movieIndex.get(movieID);
+		return movieIndex.get(movieID); // returning the movie ID
 	}
 	
 	@Override    //method to return a user details
 	public User getUser(Long userID) 
 	{
-		return userIndex.get(userID);
+		return userIndex.get(userID);  //returning the user ID .
 	}
 
 	@Override
 	public ArrayList<Rating> getUserRatings(Long userID)
 	{
-		return (ArrayList<Rating>) userIndex.get(userID).getRatings();
+		return (ArrayList<Rating>) userIndex.get(userID).getRatings();  //getting the ratings for a certain user.
 	}
 
 	@Override
@@ -87,11 +88,11 @@ public class RecommenderAPI implements RecommenderInterface
 	{
 		List<Movie> tenMovies = (List<Movie>) movieIndex.values();
 		Collections.sort(tenMovies);
-		return tenMovies.subList(1,10); // Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
+		return tenMovies.subList(1,10);// returns value from index inclusive to exclusive
 	}
 	
 
-	@Override//changed Recommendation to Movie 
+	@Override
 	public ArrayList<Movie> getUserRecommendations(Long userID) 
 	{
 		// TODO Auto-generated method stub

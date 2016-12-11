@@ -16,11 +16,12 @@ import utils.XMLSerializer;
 
 public class Main 
 {
+	//initializing new data
 	public File data = new File("data.xml");
 	private Serializer serializer = new XMLSerializer(data);
 	public RecommenderAPI recommenderAPI = new RecommenderAPI(serializer);
 
-
+	//running the program
 	 public static void main(String[] args) throws Exception
 	{
 	 Main main = new Main();
@@ -60,40 +61,45 @@ public class Main
 		}
 	      recommenderAPI.write();
 		}
-  
+	//adding a new user
 	@Command(description = "Add A New User")
 	public void addUser(@Param(name = "first name") String firstName, @Param(name = "last name") String lastName, @Param(name = "age") int age, @Param(name = "gender") String gender, @Param(name = "occupation") String occupation) 
 	{
 		recommenderAPI.addUser(firstName, lastName, age, gender, occupation);
 	}
-
+	
+	//deleting a user
 	@Command(description = "Delete A User")
 	public void removeUser(@Param(name = "id") Long id) 
 	{
 		recommenderAPI.removeUser(id);
 	}
 	
+	//adding a movie
 	@Command(description = "Add A Movie")
 	public void addMovie(@Param(name = "title") String title, @Param(name = "year") String year, @Param(name = "url") String url)
 	{
 		recommenderAPI.addMovie(title, year, url);
 	}
 	
-	@Command(description="Get Movie")  //print out movie details by id
+	//getting a movie
+	@Command(description="Get Movie")  //print out movie details using the ID of the movie
 	public void getMovie(@Param(name="id") Long id)
 	{
 		Movie movie=recommenderAPI.getMovie(id);
-		if(movie==null){   //no movie returned
+		if(movie==null)
+		{   //NO ID returned for that movie
            System.out.println("This movie does not exist");
 		}
 		else
 		{
-			System.out.println(recommenderAPI.getMovie(id).toString());
+			System.out.println(recommenderAPI.getMovie(id).toString()); // prints out the toString from models.Movie
 		}
 	}
 
+	//gets user
 	@Command(description ="Get User")
-	public void getUser(@Param(name ="id") Long id)
+	public void getUser(@Param(name ="id") Long id) //Gets user by ID 
 	{
 		User user=recommenderAPI.getUser(id);
 		if(user==null)
@@ -102,25 +108,28 @@ public class Main
 		}
 		else
 		{
-		System.out.println(recommenderAPI.getUser(id).toString());
+		System.out.println(recommenderAPI.getUser(id).toString()); // prints out the toString from models.User
 		}
 	}
 	
 	@Command(description = "Get A Users Ratings")
 	public void getUserRatings(@Param(name = "user ID") Long userID) 
 	{
-		recommenderAPI.getUserRatings(userID);
+		// gets the User id 
+		System.out.println(recommenderAPI.getUserRatings(userID));
 	}
 
 	@Command(description = "Top 10 Movies")
 	public void getTop10Movies()
 	{
+		//gets the top 10
 		System.out.println(recommenderAPI.getTopTenMovies());
 	}
 	
 	@Command(description = "Add a Rating")
 	public void addRating(@Param(name = "user ID") Long userID, @Param(name = "movie ID") Long movieID, @Param(name = "movie rating") int movieRating)
 	{
+		//adds the rating 
 		recommenderAPI.addRating(userID, movieID, movieRating);
 	}
 	
