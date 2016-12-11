@@ -18,7 +18,7 @@ public interface RecommenderInterface {
 	void addMovie(Movie movie);
 	public void addMovie(String title, String year, String url);
 	//Adds a rating from a user on a movie
-	void addRating(Rating rating);
+	void addRating(Rating movieRating);
 	public void addRating(Long userID, Long movieID, int movieRating);
 	//Gets a movie using its ID
 	public Movie getMovie(Long movieID);
@@ -32,8 +32,6 @@ public interface RecommenderInterface {
 	public void load() throws Exception;
 	//Saves the current data
 	public void write() throws Exception;
-
+	User getUser(Long userID);
 	
-	
-
 }

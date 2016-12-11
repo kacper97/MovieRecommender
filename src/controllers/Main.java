@@ -22,7 +22,7 @@ public class Main
 
 
 	 public static void main(String[] args) throws Exception
-	 {
+	{
 	 Main main = new Main();
 	 Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to likemovie - ?help for instructions", main);
 	 shell.commandLoop();
@@ -51,6 +51,7 @@ public class Main
 		{
 			recommenderAPI.addMovie(movie);
 		}
+	
 		//Loads Ratings from Data
 		List<Rating> ratings = loader.loadRatings("MovieRecommenderKW/data/ratings.dat");
 		for (Rating rating : ratings)
@@ -59,15 +60,17 @@ public class Main
 		}
 	      recommenderAPI.write();
 		}
-	
+  
+		
 	@Command(description = "Add A New User")
-	public void addUser(@Param(name = "first name") String firstName, @Param(name = "last name") String lastName,
-			@Param(name = "age") int age, @Param(name = "gender") String gender, @Param(name = "occupation") String occupation) {
+	public void addUser(@Param(name = "first name") String firstName, @Param(name = "last name") String lastName, @Param(name = "age") int age, @Param(name = "gender") String gender, @Param(name = "occupation") String occupation) 
+	{
 		recommenderAPI.addUser(firstName, lastName, age, gender, occupation);
 	}
 
 	@Command(description = "Delete A User")
-	public void removeUser(@Param(name = "id") Long id) {
+	public void removeUser(@Param(name = "id") Long id) 
+	{
 		recommenderAPI.removeUser(id);
 	}
 
@@ -75,17 +78,19 @@ public class Main
 	public void getUser(@Param(name ="id") Long id)
 	{
 		User user=recommenderAPI.getUser(id);
-		if(user==null){   //no user returned
-	           System.out.println("This user does not exist");
-			}
-		else{
+		if(user==null)
+		{   //no user returned
+	       System.out.println("This user does not exist");
+		}
+		else
+		{
 		System.out.println(recommenderAPI.getUser(id).toString());
 		}
 	}
 	
 	@Command(description = "Add A Movie")
-	public void addMovie(@Param(name = "title") String title, @Param(name = "year") String year,
-			@Param(name = "url") String url) {
+	public void addMovie(@Param(name = "title") String title, @Param(name = "year") String year, @Param(name = "url") String url)
+	{
 		recommenderAPI.addMovie(title, year, url);
 	}
 
@@ -95,6 +100,7 @@ public class Main
 		recommenderAPI.addRating(userID, movieID, movieRating);
 	}
 	
+	
 	@Command(description="Get Movie")  //print out movie details by id
 	public void getMovie(@Param(name="id") Long id)
 	{
@@ -102,18 +108,21 @@ public class Main
 		if(movie==null){   //no movie returned
            System.out.println("This movie does not exist");
 		}
-		else{
+		else
+		{
 			System.out.println(recommenderAPI.getMovie(id).toString());
 		}
 	}
 	
 	@Command(description = "Get A Users Ratings")
-	public void getUserRatings(@Param(name = "user ID") Long userID) {
+	public void getUserRatings(@Param(name = "user ID") Long userID) 
+	{
 		recommenderAPI.getUserRatings(userID);
 	}
 	
 	@Command(description = "Top 10 Movies")
-	public void getTop10Movies() {
-		recommenderAPI.getTopTenMovies();
+	public void getTop10Movies()
+	{
+		System.out.println(recommenderAPI.getTopTenMovies());
 	}
 }

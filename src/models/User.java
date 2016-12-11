@@ -110,6 +110,11 @@ public class User {
 	 return false;
 	 }
 	}
+	 //this is for the get user command from main
+	@Override
+		public String toString() {
+			return "USER ID:" + id + ", FIRSTNAME:" + firstName + ", LAST NAME: " +lastName + ", AGE: " +age + ", GENDER: "+ gender + ", OCCUPATION: " + occupation;
+		}
 }
 	
 	
