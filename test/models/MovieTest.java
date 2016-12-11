@@ -9,7 +9,7 @@ public class MovieTest {
 	Movie test = new Movie("CSGO", "2012", "www.csgoBlog.com");
 
 	@Test
-	public void testCreateMovie() {
+	public void testMovie() {
 		assertEquals("CSGO", test.getTitle());
 		assertEquals("2012", test.getYear());
 		assertEquals("www.csgoBlog.com", test.getUrl());
