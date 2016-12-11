@@ -11,7 +11,7 @@ public class Main
 {
 	
  public Serializer serializer = new XMLSerializer(null);
- public RecommenderAPI recommenderAPI = new RecommenderAPI(); 
+ public RecommenderAPI recommenderAPI = new RecommenderAPI(serializer); 
  
  @Command(description="Add a new User")
  public void addUser (@Param(name="first name") String firstName, @Param(name="last name") String lastName,
@@ -32,7 +32,11 @@ public class Main
 	 recommenderAPI.addMovie(title, year, url);
  }
  
- //Get a movie
+ @Command(description="Add a Rating")
+ public void addRating (@Param(name="userID") Long userID, @Param(name="movieID") Long movieID, @Param(name="rating") int rating)
+{
+	recommenderAPI.addRating(userID, movieID, rating);
+}
  
  //Get a user rating
  
@@ -47,6 +51,7 @@ public class Main
  Main main = new Main();
  Shell shell = ShellFactory.createConsoleShell("lm", "Welcome to likemovie - ?help for instructions", main);
  shell.commandLoop();
- main.recommenderAPI.store();
+ main.recommenderAPI.write();
  }
+ 
 }

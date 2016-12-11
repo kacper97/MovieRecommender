@@ -8,16 +8,21 @@ import java.util.Map;
 
 import models.Movie;
 import models.Rating;
-import models.Recommendation;
+
 import models.User;
-//import utils.Serializer;
+import utils.Serializer;
+
 
 public class RecommenderAPI implements RecommenderInterface {
 
 	private Map<Long, User> userIndex = new HashMap<>();
 	private Map<Long, Movie> movieIndex = new HashMap<>();
 	private ArrayList<Rating> ratingIndex = new ArrayList<>();
-	//private Serializer serializer;
+	private Serializer serializer;
+	
+	public RecommenderAPI(Serializer serializer) {
+		this.serializer = serializer;
+	}
 	
 	public void addUser(String firstName, String lastName, int age, String gender, String occupation) {
 		 User user = new User (firstName, lastName, gender, age, occupation);
@@ -58,8 +63,8 @@ public class RecommenderAPI implements RecommenderInterface {
 		return (ArrayList<Rating>) userIndex.get(userID).getRatings();
 	}
 
-	@Override
-	public ArrayList<Recommendation> getUserRecommendations(Long userID) {
+	@Override//changed Recommendation to Movie 
+	public ArrayList<Movie> getUserRecommendations(Long userID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -71,20 +76,25 @@ public class RecommenderAPI implements RecommenderInterface {
 		return tenMovies.subList(1,10); // Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
 	}
 
+	//suppress warning = allowing java to do this as usually this would be an illegal state.
+	@SuppressWarnings("unchecked")
 	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-
+	public void load() throws Exception {
+		serializer.read();
+		movieIndex = (Map<Long, Movie>)     serializer.pop();	
+		userIndex = (Map<Long, User>)     serializer.pop();
+		Movie.counter = (Long) serializer.pop();
+		User.counter = (Long) serializer.pop();
 	}
 
 	@Override
-	public void write() {
-		// TODO Auto-generated method stub
-
+	public void write() throws Exception {
+		serializer.push(User.counter);
+		serializer.push(Movie.counter);
+		serializer.push(userIndex);
+		serializer.push(movieIndex);
+		serializer.write(); 
 	}
 	
-	public void store(){
-		//for Main method in Main
-	}
 	
 }
