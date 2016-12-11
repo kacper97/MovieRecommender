@@ -5,10 +5,12 @@ import java.util.List;
 
 import models.Movie;
 import models.Rating;
+import models.User;
 
 
 public interface RecommenderInterface {
 	//Adds a user to the database
+	void addUser(User user);
 	public void addUser(String firstName, String lastName, int age, String gender, String occupation);
 	//Removes a user from the database
 	public void removeUser(Long userID);
@@ -28,5 +30,6 @@ public interface RecommenderInterface {
 	public void load() throws Exception;
 	//Saves the current data
 	public void write() throws Exception;
+	
 
 }

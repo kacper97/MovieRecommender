@@ -24,6 +24,11 @@ public class RecommenderAPI implements RecommenderInterface {
 		this.serializer = serializer;
 	}
 	
+	@Override
+	public void addUser(User user) {
+		userIndex.put(user.getId(), user); //id was created when user initialised
+	}
+	
 	public void addUser(String firstName, String lastName, int age, String gender, String occupation) {
 		 User user = new User (firstName, lastName, gender, age, occupation);
 		 userIndex.put(user.getId(), user);
@@ -94,7 +99,6 @@ public class RecommenderAPI implements RecommenderInterface {
 		serializer.push(userIndex);
 		serializer.push(movieIndex);
 		serializer.write(); 
+
 	}
-	
-	
 }
