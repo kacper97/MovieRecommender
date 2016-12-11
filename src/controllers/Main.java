@@ -39,20 +39,20 @@ public class Main
 		
 		CSVLoader loader = new CSVLoader();
 		//Loads users from Data
-		List<User> users = loader.loadUsers("data/users.dat");
+		List<User> users = loader.loadUsers("MovieRecommenderKW/data/users.dat");
 		for (User user : users)
 		{
 			recommenderAPI.addUser(user);
 		}
 		
 		//Loads Movies from Data
-		List<Movie> movies = loader.loadMovies("data/items.dat");
+		List<Movie> movies = loader.loadMovies("MovieRecommenderKW/data/items.dat");
 		for (Movie movie : movies)
 		{
 			recommenderAPI.addMovie(movie);
 		}
 		//Loads Ratings from Data
-		List<Rating> ratings = loader.loadRatings("data/ratings.dat");
+		List<Rating> ratings = loader.loadRatings("MovieRecommenderKW/data/ratings.dat");
 		for (Rating rating : ratings)
 		{
 			recommenderAPI.addRating(rating);
@@ -71,6 +71,18 @@ public class Main
 		recommenderAPI.removeUser(id);
 	}
 
+	@Command(description ="Get User")
+	public void getUser(@Param(name ="id") Long id)
+	{
+		User user=recommenderAPI.getUser(id);
+		if(user==null){   //no user returned
+	           System.out.println("This user does not exist");
+			}
+		else{
+		System.out.println(recommenderAPI.getUser(id).toString());
+		}
+	}
+	
 	@Command(description = "Add A Movie")
 	public void addMovie(@Param(name = "title") String title, @Param(name = "year") String year,
 			@Param(name = "url") String url) {
@@ -83,9 +95,16 @@ public class Main
 		recommenderAPI.addRating(userID, movieID, movieRating);
 	}
 	
-	@Command(description = "Get A Movie")
-	public void getMovie(@Param(name = "movie ID") Long id) {
-		recommenderAPI.getMovie(id);
+	@Command(description="Get Movie")  //print out movie details by id
+	public void getMovie(@Param(name="id") Long id)
+	{
+		Movie movie=recommenderAPI.getMovie(id);
+		if(movie==null){   //no movie returned
+           System.out.println("This movie does not exist");
+		}
+		else{
+			System.out.println(recommenderAPI.getMovie(id).toString());
+		}
 	}
 	
 	@Command(description = "Get A Users Ratings")
@@ -97,6 +116,4 @@ public class Main
 	public void getTop10Movies() {
 		recommenderAPI.getTopTenMovies();
 	}
-
-
 }

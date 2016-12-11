@@ -26,7 +26,7 @@ public class RecommenderAPI implements RecommenderInterface {
 	
 	@Override
 	public void addUser(User user) {
-		userIndex.put(user.getId(), user); //id was created when user initialised
+		userIndex.put(user.getId(), user); // id was created when user was started.
 	}
 	
 	public void addUser(String firstName, String lastName, int age, String gender, String occupation) {
@@ -47,17 +47,27 @@ public class RecommenderAPI implements RecommenderInterface {
 		}
 
 	@Override
+	public void addMovie(Movie movie) {
+		movieIndex.put(movie.getId(), movie); 
+	}
+	
+	@Override
 	public void addMovie(String title, String year, String url) {
 		Movie movie = new Movie(title, year, url);
 		movieIndex.put(movie.getId(), movie);
 	}
 
 	@Override
-	public void addRating(Long userID, Long movieID, int rating) 
-	{
-		ratingIndex.add(new Rating(userID, movieID, rating));
+	public void addRating(Rating movieRating){
+		ratingIndex.put(Movie.counter, movieRating);
 	}
-
+	
+	@Override
+	public void addRating(Long userID, Long movieID, int movieRating) 
+	{
+		ratingIndex.add(new Rating(userID, movieID, movieRating));
+	}
+	
 	@Override
 	public Movie getMovie(Long movieID) {
 		return movieIndex.get(movieID);
@@ -100,5 +110,9 @@ public class RecommenderAPI implements RecommenderInterface {
 		serializer.push(movieIndex);
 		serializer.write(); 
 
+	}
+
+	public User getUser(Long userID) {
+		return userIndex.get(userID);
 	}
 }
