@@ -61,7 +61,6 @@ public class Main
 	      recommenderAPI.write();
 		}
   
-		
 	@Command(description = "Add A New User")
 	public void addUser(@Param(name = "first name") String firstName, @Param(name = "last name") String lastName, @Param(name = "age") int age, @Param(name = "gender") String gender, @Param(name = "occupation") String occupation) 
 	{
@@ -72,6 +71,25 @@ public class Main
 	public void removeUser(@Param(name = "id") Long id) 
 	{
 		recommenderAPI.removeUser(id);
+	}
+	
+	@Command(description = "Add A Movie")
+	public void addMovie(@Param(name = "title") String title, @Param(name = "year") String year, @Param(name = "url") String url)
+	{
+		recommenderAPI.addMovie(title, year, url);
+	}
+	
+	@Command(description="Get Movie")  //print out movie details by id
+	public void getMovie(@Param(name="id") Long id)
+	{
+		Movie movie=recommenderAPI.getMovie(id);
+		if(movie==null){   //no movie returned
+           System.out.println("This movie does not exist");
+		}
+		else
+		{
+			System.out.println(recommenderAPI.getMovie(id).toString());
+		}
 	}
 
 	@Command(description ="Get User")
@@ -88,41 +106,22 @@ public class Main
 		}
 	}
 	
-	@Command(description = "Add A Movie")
-	public void addMovie(@Param(name = "title") String title, @Param(name = "year") String year, @Param(name = "url") String url)
+	@Command(description = "Get A Users Ratings")
+	public void getUserRatings(@Param(name = "user ID") Long userID) 
 	{
-		recommenderAPI.addMovie(title, year, url);
+		recommenderAPI.getUserRatings(userID);
 	}
 
+	@Command(description = "Top 10 Movies")
+	public void getTop10Movies()
+	{
+		System.out.println(recommenderAPI.getTopTenMovies());
+	}
+	
 	@Command(description = "Add a Rating")
 	public void addRating(@Param(name = "user ID") Long userID, @Param(name = "movie ID") Long movieID, @Param(name = "movie rating") int movieRating)
 	{
 		recommenderAPI.addRating(userID, movieID, movieRating);
 	}
 	
-	
-	@Command(description="Get Movie")  //print out movie details by id
-	public void getMovie(@Param(name="id") Long id)
-	{
-		Movie movie=recommenderAPI.getMovie(id);
-		if(movie==null){   //no movie returned
-           System.out.println("This movie does not exist");
-		}
-		else
-		{
-			System.out.println(recommenderAPI.getMovie(id).toString());
-		}
-	}
-	
-	@Command(description = "Get A Users Ratings")
-	public void getUserRatings(@Param(name = "user ID") Long userID) 
-	{
-		recommenderAPI.getUserRatings(userID);
-	}
-	
-	@Command(description = "Top 10 Movies")
-	public void getTop10Movies()
-	{
-		System.out.println(recommenderAPI.getTopTenMovies());
-	}
 }
